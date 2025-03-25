@@ -1,6 +1,6 @@
 # Brilliant eSystems Website
 
-A modern, responsive corporate website for Brilliant eSystems, built with React, TypeScript, and Material-UI.
+in this project i build a modern, responsive corporate website for Brilliant eSystems, built with React, TypeScript, and Material-UI.
 
 ## 🚀 Features
 
