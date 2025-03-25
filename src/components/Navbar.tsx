@@ -31,24 +31,14 @@ const pages = [
 ];
 
 const Navbar = () => {
-  const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const navigate = useNavigate();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
 
-  const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElNav(event.currentTarget);
-  };
-
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElUser(event.currentTarget);
-  };
-
-  const handleCloseNavMenu = (path: string) => {
-    setAnchorElNav(null);
-    navigate(path);
   };
 
   const handleCloseUserMenu = () => {
@@ -57,6 +47,13 @@ const Navbar = () => {
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
+  };
+
+  const handleNavigation = (path: string) => {
+    navigate(path);
+    if (mobileOpen) {
+      setMobileOpen(false);
+    }
   };
 
   const drawer = (
@@ -69,7 +66,7 @@ const Navbar = () => {
         {pages.map((page) => (
           <ListItem
             key={page.name}
-            onClick={() => handleCloseNavMenu(page.path)}
+            onClick={() => handleNavigation(page.path)}
             sx={{
               '&:hover': {
                 backgroundColor: 'rgba(27, 94, 32, 0.08)',
@@ -140,7 +137,7 @@ const Navbar = () => {
               {pages.map((page) => (
                 <Button
                   key={page.name}
-                  onClick={() => handleCloseNavMenu(page.path)}
+                  onClick={() => handleNavigation(page.path)}
                   sx={{
                     color: '#1B5E20',
                     fontSize: '1rem',
